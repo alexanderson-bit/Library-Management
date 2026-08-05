@@ -55,7 +55,17 @@ def checking_strong_password():
         else:
             print("Password must contain at least an uppercase letter, lowercase letter, special character and at least one digit")    
 
+def menu_main():
+    menu="1-Library Registration\n\
+2-Book Donation\n\
+3-Log in to your account\n\
+4-Book search\n\
+5-Exit"
+    return menu
 
-
-m=checking_strong_password()
-print(m)
+def menu_user():
+    menu="1-Display received books\n\
+2-Getting a book\n\
+3-Returning a book\n\
+4-Change User Password"
+    return menu

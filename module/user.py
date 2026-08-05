@@ -35,10 +35,12 @@ class User:
         self.books.append(book)
 
     def show_books(self):
-        m=1
-        for i in self.books:
-            print(f"{m}-title:{i[0]} writer:{i[1]}")
-            m+=1
+        # m=1
+        # for i in self.books:
+        #     print(f"{m}-title:{i[0]} writer:{i[1]}")
+        #     m+=1
+        return self.books
+
     def delete_book(self,book):
         books2=self.books.copy()
         for i in books2:
@@ -47,10 +49,3 @@ class User:
                 self.id_book-=1
                 return True
         return False    
-
-komeil=User(4271704768,"komeil","mahdavi","zanjan","ali","komeil")
-komeil.add_book(["iran","moz"])
-komeil.add_book(["irani","mozy"])
-komeil.add_book(["labratory","moz"])
-komeil.add_book(["iran","m"])
-komeil.show_books()

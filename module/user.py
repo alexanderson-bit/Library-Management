@@ -1,6 +1,13 @@
 class User:
     def __init__(self,national_code,fname,lname,city,dad_name,password):
-        pass
+        self.id_book=0
+        self.books=[]
+        self.set_national_code(national_code)
+        self.set_name(fname,lname)
+        self.set_city(city)
+        self.set_dad_name(dad_name)
+        self.set_password(password) 
+
     def set_name(self,fname,lname):
         self.fname=fname
         self.lname=lname
@@ -11,5 +18,39 @@ class User:
     def set_dad_name(self,dad_name):
         self.dad_name=dad_name
     def set_password(self,password):
-        self.password=password    
-         
+        self.__password=password    
+
+    def get_national_code(self):
+        return self.set_national_code
+    def get_password(self):
+        return self.__password
+    def get_name(self):
+        return self.fname+''+self.lname
+
+    def check_borrowing_limit(self):
+        return self.id_book<4
+
+    def add_book(self,book):
+        self.id_book+=1
+        self.books.append(book)
+
+    def show_books(self):
+        m=1
+        for i in self.books:
+            print(f"{m}-title:{i[0]} writer:{i[1]}")
+            m+=1
+    def delete_book(self,book):
+        books2=self.books.copy()
+        for i in books2:
+            if i[0]==book[0] and i[1]==book[1]:
+                self.books().remove(book)
+                self.id_book-=1
+                return True
+        return False    
+
+komeil=User(4271704768,"komeil","mahdavi","zanjan","ali","komeil")
+komeil.add_book(["iran","moz"])
+komeil.add_book(["irani","mozy"])
+komeil.add_book(["labratory","moz"])
+komeil.add_book(["iran","m"])
+komeil.show_books()

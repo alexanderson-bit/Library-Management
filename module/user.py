@@ -8,11 +8,11 @@ class User:
         self.set_dad_name(dad_name)
         self.set_password(password) 
 
+    def set_national_code(self,national_code):
+        self.national_code=national_code
     def set_name(self,fname,lname):
         self.fname=fname
         self.lname=lname
-    def set_national_code(self,national_code):
-        self.national_code=national_code
     def set_city(self,city):
         self.city=city
     def set_dad_name(self,dad_name):
@@ -21,25 +21,21 @@ class User:
         self.__password=password    
 
     def get_national_code(self):
-        return self.set_national_code
+        return self.national_code
     def get_password(self):
         return self.__password
     def get_name(self):
         return self.fname+''+self.lname
+    def get_books(self):
+        return self.books
 
     def check_borrowing_limit(self):
-        return self.id_book<4
+        return self.id_book<=4
 
     def add_book(self,book):
-        self.id_book+=1
-        self.books.append(book)
-
-    def show_books(self):
-        # m=1
-        # for i in self.books:
-        #     print(f"{m}-title:{i[0]} writer:{i[1]}")
-        #     m+=1
-        return self.books
+            self.id_book+=1
+            self.books.append(book)
+        
 
     def delete_book(self,book):
         books2=self.books.copy()

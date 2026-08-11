@@ -1,8 +1,8 @@
 class Book:
-    def __init__(self,title,writer,quantity=1):
-        self.quantity=quantity
+    def __init__(self,title,writer):
+        self.quantity=1
         self.borrowed=0
-        self.available=quantity
+        self.available=1
         self.set_title(title)
         self.set_writer(writer)
 
@@ -11,8 +11,8 @@ class Book:
     def set_writer(self,writer):
         self.writer=writer
 
-    def set_quantity(self,quantity):
-        self.quantity+=quantity
+    def set_update_quantity(self):
+        self.quantity+=1
 
     def get_title(self):
         return self.title
@@ -30,18 +30,21 @@ class Book:
             return True
         else:
             return False
-
+    def check_returning(self):
+        if self.available==self.quantity:
+            return False
+        return True
     def borrowingـbook(self):
         if self.check_status(self):
             self.borrowed+=1
             self.available=self.get_quantity()-self.get_borrowed()
-            return False
-        else:
             return True
+        else:
+            return False
 
     def returningـbook(self):
-        self.borrowed+=1
+        self.borrowed-=1
         self.available=self.get_quantity()-self.get_borrowed()
 
     def __str__(self):
-        m=f"title:{self.get_title()} writer:{self.get_writer()} quantity:{self.get_quantity()} available:{self.get_available}"
+        return f"title:{self.title} writer:{self.writer} quantity:{self.quantity} available:{self.available}"

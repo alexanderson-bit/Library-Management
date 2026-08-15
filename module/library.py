@@ -44,7 +44,7 @@ class Library:
     
     def check_login_user(self,national_code,password):
         for user in self.users:
-            if user.get_national_code==national_code and user.get_password()==password:
+            if user.get_national_code()==national_code and user.get_password()==password:
                 return user
         return False    
 
@@ -70,12 +70,14 @@ class Library:
         if user.check_borrowing_limit():
             book=self.borrowingـbook(title,writer)
             if book:
-                user.add_book(book)
+                booklist=[book.get_title(),book.get_writer()]
+                user.add_book(booklist)
                 return "The book was successfully borrowed."
             else:
                 return "The book is on loan."
         else:
             return "Books borrowed exceeding the allowed limit"
 
-def returningـbook(self,user,title):
-    pass
+
+    def returningـbook(self,user,index):
+        user.delete_book(index-1)

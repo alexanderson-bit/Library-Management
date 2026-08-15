@@ -35,7 +35,7 @@ class Book:
             return False
         return True
     def borrowingـbook(self):
-        if self.check_status(self):
+        if self.check_status():
             self.borrowed+=1
             self.available=self.get_quantity()-self.get_borrowed()
             return True

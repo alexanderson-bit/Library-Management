@@ -37,11 +37,7 @@ class User:
             self.books.append(book)
         
 
-    def delete_book(self,book):
-        books2=self.books.copy()
-        for i in books2:
-            if i[0]==book[0] and i[1]==book[1]:
-                self.books().remove(book)
-                self.id_book-=1
-                return True
-        return False    
+    def delete_book(self,index):
+        self.books.pop(index)
+        self.id_book-=1
+    

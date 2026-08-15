@@ -1,5 +1,6 @@
 import string
 from module import Library
+from module import User
 # import pickle
 # class name:
 #     def __init__(self,name,age):
@@ -136,6 +137,7 @@ def read_book():
 def userـPanel(user):
     print("Welcome to your account.")
     while True:
+        print("-"*50)
         selection=check_select(menu_user(),1,6)
 
         if selection==1:
@@ -143,21 +145,30 @@ def userـPanel(user):
         elif selection==2:
             borrowing_book(user)
         elif selection==3:
-            pass
+            books=user.get_books()
+            if len(books)==0:
+                print("Book list is empty")
+            else:
+                index=display_user_booklist(books)
+                library.returningـbook(user,index)
         elif selection==4:
             change_password(user)
         elif selection==5:
             create_boook()
         else:
             break
-
+def display_user_booklist(books):
+    for index,book in enumerate(books,start=1):
+        print(f"{index}-title :{book[0]} , writer:{book[1]}")
+    return check_select("Enter the ID of the book you are looking for.",1,len(books))
+    
 def display_book(user):
     book_list=user.get_books()
     if len(book_list)==0:
         print("Book list is empty")
     else:
         for index, book in  enumerate(book_list,start=1):
-            print(f"{index}-{book}")
+            print(f"{index}-title:{book[0]} , writer:{book[1]}")
 
 def borrowing_book(user):
     title,writer=read_book()
@@ -173,6 +184,7 @@ def change_password(user):
 
 def main():
     while True:
+        print("-"*50)
         selection=check_select(menu_main(),1,6)
         if selection==1:
             show_booklist()
@@ -181,7 +193,7 @@ def main():
         elif selection==3:
             user=login_account()
             if user:
-                print("Login successful.")
+                print("Login successful.",)
                 userـPanel(user)
             else:
                 print("Incorrect password or username entered.")
@@ -190,10 +202,10 @@ def main():
         elif selection==5:
             user=create_read_information()
             if user:
-                print("User account successfully created.")
+                print("User account successfully created.\n","-"*50)
                 userـPanel(user)
             else:
-                print("This user account already exists.")
+                print("This user account already exists!!\n","-"*50)
         else :
             break
 main()
